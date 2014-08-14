@@ -10,6 +10,8 @@
 // For example, I can have another method called formRectangle in this file and dynamically decide
 // during runtime if I want to form a triangle or rectangle and the program is expected to work sane.
 //
+// This C feature is known as flexible array member.
+//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,7 +27,7 @@ typedef struct point point_t;
 struct polygon 
 {
     int num_points;
-    point_t *pt[];  
+    point_t *pt[];  // can also be written as point_t pt[];
 };
 typedef struct polygon polygon_t;
 
@@ -33,16 +35,16 @@ void formTriangle(polygon_t *ptr)
 {
     ptr->num_points = 3;
     ptr->pt[0] = (point_t *) malloc(sizeof(point_t));
-    ptr->pt[0]->x = 0;
-    ptr->pt[0]->y = 0;
+    ptr->pt[0]->x = 0; // s/]->/]./
+    ptr->pt[0]->y = 0; // s/]->/]./
 
     ptr->pt[1] = (point_t *) malloc(sizeof(point_t));
-    ptr->pt[1]->x = 4;
-    ptr->pt[1]->y = 0;
+    ptr->pt[1]->x = 4; // s/]->/]./
+    ptr->pt[1]->y = 0; // s/]->/]./
 
     ptr->pt[2] = (point_t *) malloc(sizeof(point_t));
-    ptr->pt[2]->x = 0;
-    ptr->pt[2]->y = 3;
+    ptr->pt[2]->x = 0; // s/]->/]./
+    ptr->pt[2]->y = 3; // s/]->/]./
 }
 
 int main()
@@ -56,8 +58,8 @@ int main()
     for (i = 0; i < ptr->num_points; i++)
     {
         printf("Point %d: ", i);
-        printf("X = %d, ", ptr->pt[i]->x);
-        printf("Y = %d\n", ptr->pt[i]->y);
+        printf("X = %d, ", ptr->pt[i]->x); // s/]->/]./
+        printf("Y = %d\n", ptr->pt[i]->y); // s/]->/]./
     }
     return 0;
 }
